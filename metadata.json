@@ -1,0 +1,6 @@
+{
+  "name": "بوسي بسملة - نبض ورعاية أحمد",
+  "description": "نظام التشغيل الذكي والملاذ الآمن لبسملة: رفيق دراسي، دعم نفسي وعاطفي، متابع الصلوات والعناية الذاتية بنبض وحب أحمد",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

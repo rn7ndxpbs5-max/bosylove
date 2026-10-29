@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دلوعة أحمد 💖</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #ff4b72;
+            --primary-hover: #ff2a55;
+            --secondary: #ff85a2;
+            --accent: #ffd1dc;
+            --bg-gradient: linear-gradient(135deg, #ffe6eb 0%, #ffd3dd 50%, #ffb3c6 100%);
+            --glass-bg: rgba(255, 255, 255, 0.92);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --text-color: #4a2c35;
+            --shadow: 0 8px 32px 0 rgba(255, 75, 114, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            color: var(--text-color);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* القلوب المتحركة */
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .heart-particle {
+            position: absolute;
+            color: rgba(255, 75, 114, 0.35);
+            animation: floatUp 8s infinite linear;
+            bottom: -50px;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 1; }
+            100% { transform: translateY(-110vh) rotate(360deg) scale(1.2); opacity: 0; }
+        }
+
+        /* 1. صفحة الدخول */
+        #login-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-gradient);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 2px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 440px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .love-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .pin-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid var(--secondary);
+            border-radius: 20px;
+            font-size: 1.2rem;
+            text-align: center;
+            outline: none;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 20px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(255, 75, 114, 0.3);
+            transition: all 0.3s;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* 2. صفحة المفاجأة */
+        #surprise-screen {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--bg-gradient);
+            z-index: 9998;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .surprise-card {
+            background: var(--glass-bg);
+            border: 2px solid var(--glass-border);
+            border-radius: 35px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 650px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .surprise-text {
+            font-size: 1.2rem;
+            line-height: 2;
+            color: #522d38;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 20px;
+        }
+
+        /* 3. التطبيق الرئيسي */
+        #app-container {
+            display: none;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            background: var(--glass-bg);
+            border-radius: 25px;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow);
+        }
+
+        .tabs-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 130px;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            color: var(--text-color);
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--glass-bg);
+            border-radius: 25px;
+            padding: 25px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow);
+            min-height: 500px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .chat-wrapper {
+            display: flex;
+            flex-direction: column;
+            height: 480px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 14px 18px;
+            border-radius: 20px;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .message.bot {
+            align-self: flex-start;
+            background: white;
+            color: var(--text-color);
+            border-bottom-right-radius: 4px;
+            border: 1px solid #ffd8e1;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-input-area {
+            display: flex;
+            gap: 10px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 75, 114, 0.15);
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 14px 20px;
+            border: 1px solid var(--secondary);
+            border-radius: 20px;
+            outline: none;
+            background: white;
+            font-size: 1rem;
+        }
+
+        .send-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid #ffccd5;
+        }
+
+        .prayer-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background: #fff5f7;
+            border-radius: 12px;
+            margin-bottom: 8px;
+        }
+
+        .prayer-status {
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .status-done { background: #d4edda; color: #155724; }
+        .status-pending { background: #fff3cd; color: #856404; }
+        .status-exempt { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+
+    <div class="hearts-bg" id="hearts-container"></div>
+
+    <!-- 1. الشاشة السرية -->
+    <div id="login-screen">
+        <div class="login-card">
+            <i class="fa-solid fa-heart-circle-bolt" style="font-size: 3.5rem; color: var(--primary); margin-bottom: 15px;"></i>
+            <h1 class="love-title">بحب احمد 💖</h1>
+            <p style="margin-bottom: 20px; color: #7a4253;">ادخلي الرمز السري لفتح برنامجكِ الخاص</p>
+            <input type="password" id="pin-code" class="pin-input" placeholder="اكتبي: بحب احمد">
+            <button onclick="checkPin()" class="login-btn">دخول لقلب أحمد 🔑</button>
+            <p id="error-msg" style="color: #d9534f; margin-top: 10px; display: none; font-weight: bold;"></p>
+        </div>
+    </div>
+
+    <!-- 2. شاشة المفاجأة -->
+    <div id="surprise-screen">
+        <div class="surprise-card">
+            <h2 style="color: var(--primary); font-size: 2rem;">إلى أميرتي ودلوعتي بسملة 👑💖</h2>
+            <div class="surprise-text">
+                "عملتلك البرنامج ده مخصوص عشان يعيش معاكي كل لحظة في يومك، يشرحلك دروس الفرقة الأولى ويسهلها عليكي، يططب عليكِ لما تتعبي، ويدلعك زي ما أنتي متعودة من أحمد دايماً ✨"
+            </div>
+            <button onclick="openMainApp()" class="login-btn">دخول للبرنامج (دلوعة أحمد) 💖</button>
+        </div>
+    </div>
+
+    <!-- 3. الواجهة الرئيسية -->
+    <div id="app-container">
+        <header>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <i class="fa-solid fa-crown" style="font-size: 2rem; color: var(--primary);"></i>
+                <h1 style="color: var(--primary); font-size: 1.6rem;">دلوعة أحمد 💖</h1>
+            </div>
+        </header>
+
+        <div class="tabs-nav">
+            <button class="tab-btn active" onclick="switchTab(event, 'study-chat')"><i class="fa-solid fa-graduation-cap"></i> شات المذاكرة</button>
+            <button class="tab-btn" onclick="switchTab(event, 'love-chat')"><i class="fa-solid fa-heart"></i> شات الدلع والفضفضة</button>
+            <button class="tab-btn" onclick="switchTab(event, 'prayer-chat')"><i class="fa-solid fa-kaaba"></i> شات الصلاة</button>
+            <button class="tab-btn" onclick="switchTab(event, 'organizer')"><i class="fa-solid fa-calendar-week"></i> الجدول</button>
+            <button class="tab-btn" onclick="switchTab(event, 'period-tracker')"><i class="fa-solid fa-notes-medical"></i> متابع البيريود</button>
+        </div>
+
+        <!-- 1. شات المذاكرة -->
+        <div id="study-chat" class="tab-content active">
+            <div class="chat-wrapper">
+                <div class="chat-messages" id="study-messages">
+                    <div class="message bot">أهلاً يا أميرتي ودلوعة أحمد! 🎓 أنا دكتورة بوسي، اسأليني في أي مادة في الفرقة الأولى وهشرحهالك ببساطة ودلع 💕</div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="study-input" class="chat-input" placeholder="اسألي عن أي درس أو مادة..." onkeypress="handleEnter(event, 'study')">
+                    <button class="send-btn" onclick="sendMessage('study')"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. شات الفضفضة -->
+        <div id="love-chat" class="tab-content">
+            <div class="chat-wrapper">
+                <div class="chat-messages" id="love-messages">
+                    <div class="message bot">يا روح قلب أحمد وسكرته! 💖 فضفضي وتدلعي براحتك، أحمد و بوسي معاكي ومفيش زعل أبداً.</div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="love-input" class="chat-input" placeholder="فضفضي وتدلعي براحتك..." onkeypress="handleEnter(event, 'love')">
+                    <button class="send-btn" onclick="sendMessage('love')"><i class="fa-solid fa-heart"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. شات الصلاة -->
+        <div id="prayer-chat" class="tab-content">
+            <div class="chat-wrapper">
+                <div class="chat-messages" id="prayer-messages">
+                    <div class="message bot">تقبل الله منكِ يا سكرتي 🕌 مساحتكِ الإيمانية للتذكير بالصلوات والدعاء.</div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="prayer-input" class="chat-input" placeholder="اطلبي دعاء أو أذكار..." onkeypress="handleEnter(event, 'prayer')">
+                    <button class="send-btn" onclick="sendMessage('prayer')"><i class="fa-solid fa-hands-praying"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. الجدول التنظيمي -->
+        <div id="organizer" class="tab-content">
+            <h2 style="color: var(--primary); margin-bottom: 15px;">الجدول اليومي لدلوعة أحمد 🌸</h2>
+            <div class="grid-2">
+                <div class="card-box">
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">متابع الصلوات</h3>
+                    <div class="prayer-item"><span>الفجر</span><span class="prayer-status status-done" onclick="togglePrayer(this)">أُديت ✨</span></div>
+                    <div class="prayer-item"><span>الظهر</span><span class="prayer-status status-done" onclick="togglePrayer(this)">أُديت ✨</span></div>
+                    <div class="prayer-item"><span>العصر</span><span class="prayer-status status-pending" onclick="togglePrayer(this)">في الانتظار ⏳</span></div>
+                    <div class="prayer-item"><span>المغرب</span><span class="prayer-status status-pending" onclick="togglePrayer(this)">في الانتظار ⏳</span></div>
+                    <div class="prayer-item"><span>العشاء</span><span class="prayer-status status-pending" onclick="togglePrayer(this)">في الانتظار ⏳</span></div>
+                </div>
+                <div class="card-box">
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">توزيع الوقت</h3>
+                    <p style="margin-bottom: 10px;">📖 <b>مذاكرة:</b> ساعتين صباحاً وساعتين عصراً</p>
+                    <p style="margin-bottom: 10px;">🌸 <b>عناية وراحة:</b> بعد الظهر</p>
+                    <p>💖 <b>دلع مع أحمد:</b> باقي اليوم!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. متابع البيريود -->
+        <div id="period-tracker" class="tab-content">
+            <h2 style="color: var(--primary); margin-bottom: 15px;">متابع الدورة الشهرية والعناية الذاتية 🌸</h2>
+            <div class="grid-2">
+                <div class="card-box" style="text-align: center;">
+                    <h3 style="color: var(--primary);">الموعد القادم المتوقع</h3>
+                    <div style="font-size: 2.2rem; font-weight: 800; color: var(--primary); margin: 15px 0;">باقي 8 أيام</div>
+                    <button class="login-btn" onclick="alert('تم حفظ البيانات يا سكرة!')">تحديث البيانات</button>
+                </div>
+                <div class="card-box">
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">نصائح أحمد لدلوعته</h3>
+                    <p style="line-height: 1.8;">☕ اشربي مشروبات دافئة كالنعناع والقرفة.<br>🛌 مفيش أي ضغط دراسي وقت التعب.<br>💖 أحمد معاكي وبيرعاكي دايماً.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // إعداد القلوب
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('i');
+                heart.className = 'fa-solid fa-heart heart-particle';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 4 + 5) + 's';
+                heart.style.fontSize = (Math.random() * 15 + 10) + 'px';
+                container.appendChild(heart);
+            }
+        }
+        createHearts();
+
+        // فحص الرمز السري
+        function checkPin() {
+            const pin = document.getElementById('pin-code').value.trim();
+            if (pin === "بحب احمد") {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('surprise-screen').style.display = 'flex';
+            } else {
+                const err = document.getElementById('error-msg');
+                err.style.display = 'block';
+                err.innerText = 'الرمز خاطئ! اكتبي "بحب احمد" 💕';
+            }
+        }
+
+        function openMainApp() {
+            document.getElementById('surprise-screen').style.display = 'none';
+            document.getElementById('app-container').style.display = 'block';
+        }
+
+        function switchTab(evt, tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            evt.currentTarget.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        function togglePrayer(el) {
+            if (el.classList.contains('status-done')) {
+                el.className = 'prayer-status status-pending'; el.innerText = 'في الانتظار ⏳';
+            } else if (el.classList.contains('status-pending')) {
+                el.className = 'prayer-status status-exempt'; el.innerText = 'معفوة (بيريود) 🌸';
+            } else {
+                el.className = 'prayer-status status-done'; el.innerText = 'أُديت ✨';
+            }
+        }
+
+        // الذكاء الاصطناعي والشرح الحقيقي
+        async function fetchGeminiResponse(promptText, type) {
+            let systemInstruction = "";
+            if (type === 'study') {
+                systemInstruction = "أنتِ 'دكتورة بوسي' المساعد التعليمي لدلوعة أحمد 'بسملة'. اشرحي لها مواد الفرقة الأولى (إدارة أعمال، محاسبة، اقتصاد، تكنولوجيا) بأسلوب مبسط جداً وممتع ومصحوب بالحب والدلع والتشجيع المباشر باسمها وبحب أحمد لها.";
+            } else if (type === 'love') {
+                systemInstruction = "أنتِ 'بوسي بسملة' تعبرين عن روح أحمد. قدمي لبسملة أعلى درجات الطبطبة، الدعم العاطفي، التدليل، والدلع بكلمات مفعمة بالحب والحنان.";
+            } else {
+                systemInstruction = "أنتِ المساعد الإيماني الدافئ لبسملة (دلوعة أحمد). ذكّريها بالصلوات والأذكار بأسلوب إيماني حنون ومحبب يشجعها على الطاعة.";
+            }
+
+            try {
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=YOUR_GEMINI_API_KEY`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ role: 'user', parts: [{ text: promptText }] }],
+                        systemInstruction: { parts: [{ text: systemInstruction }] }
+                    })
+                });
+                const data = await res.json();
+                if (data.candidates && data.candidates[0].content.parts[0].text) {
+                    return data.candidates[0].content.parts[0].text;
+                }
+            } catch (e) {
+                console.log(e);
+            }
+
+            // الرد البديل التلقائي المزين
+            if (type === 'study') {
+                return `من عيوني يا دلوعة أحمد! 🎓 بخصوص "${promptText}": المادة دي سهلة جداً، الفكرة الأساسية فيها بتعتمد على الفهم وربط المفاهيم بالتطبيق العملي. أحمد فخور بيكي وواثق إنك أشطر بنوتة في الفرقة الأولى 💕`;
+            } else if (type === 'love') {
+                return `يا روح قلب أحمد وسكرته! 💖 أحمد بيبعتلك ألف بوسة وبيقولك أنتي أجمل وأرقى بنوتة في الدنيا، ومفيش أي حاجة تستاهل زعلك أو تعبك خالص ✨`;
+            } else {
+                return `تقبل الله من دلوعة أحمد العفيفة 🌸 ربنا يتقبل منكِ صلاتك ويحفظك لأحمد ويبارك في قلبكِ الطاهر الجميل ✨`;
+            }
+        }
+
+        async function sendMessage(type) {
+            const input = document.getElementById(`${type}-input`);
+            const text = input.value.trim();
+            if (!text) return;
+
+            const container = document.getElementById(`${type}-messages`);
+            
+            // إضافة رسالة بسملة
+            const userDiv = document.createElement('div');
+            userDiv.className = 'message user';
+            userDiv.innerText = text;
+            container.appendChild(userDiv);
+
+            input.value = '';
+            container.scrollTop = container.scrollHeight;
+
+            // إضافة مؤشر جاري الكتابة
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'message bot';
+            loadingDiv.innerText = 'بوسي بتكتبلك بحب... 💖';
+            container.appendChild(loadingDiv);
+            container.scrollTop = container.scrollHeight;
+
+            // جلب الإجابة الشارحة
+            const reply = await fetchGeminiResponse(text, type);
+            loadingDiv.innerText = reply;
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function handleEnter(e, type) {
+            if (e.key === 'Enter') sendMessage(type);
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دلوعة أحمد 💖</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #ff4b72;
+            --primary-hover: #ff2a55;
+            --secondary: #ff85a2;
+            --accent: #ffd1dc;
+            --bg-gradient: linear-gradient(135deg, #ffe6eb 0%, #ffd3dd 50%, #ffb3c6 100%);
+            --glass-bg: rgba(255, 255, 255, 0.9);
+            --glass-border: rgba(255, 255, 255, 0.75);
+            --text-color: #4a2c35;
+            --shadow: 0 8px 32px 0 rgba(255, 75, 114, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            color: var(--text-color);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* القلوب المتحركة في الخلفية */
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .heart-particle {
+            position: absolute;
+            color: rgba(255, 75, 114, 0.35);
+            animation: floatUp 8s infinite linear;
+            bottom: -50px;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 1; }
+            100% { transform: translateY(-110vh) rotate(360deg) scale(1.2); opacity: 0; }
+        }
+
+        /* 1. صفحة الدخول السرية */
+        #login-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-gradient);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 2px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 440px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 8px 32px 0 rgba(255, 75, 114, 0.2); }
+            50% { box-shadow: 0 12px 40px 0 rgba(255, 75, 114, 0.4); }
+        }
+
+        .love-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+        }
+
+        .love-subtitle {
+            font-size: 1.1rem;
+            color: #7a4253;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .pin-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid var(--secondary);
+            border-radius: 20px;
+            font-size: 1.2rem;
+            text-align: center;
+            outline: none;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .pin-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(255, 75, 114, 0.3);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 20px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(255, 75, 114, 0.3);
+            transition: all 0.3s;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 75, 114, 0.4);
+        }
+
+        /* 2. صفحة المفاجأة (رسالة حب ودلع من أحمد) */
+        #surprise-screen {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--bg-gradient);
+            z-index: 9998;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .surprise-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--glass-border);
+            border-radius: 35px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 650px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            animation: zoomIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .surprise-badge {
+            display: inline-block;
+            background: #ffe3e8;
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            border: 1px solid var(--secondary);
+        }
+
+        .surprise-title {
+            font-size: 2.3rem;
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .surprise-text {
+            font-size: 1.25rem;
+            line-height: 2.1;
+            color: #522d38;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-align: justify;
+            text-align-last: center;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 25px;
+            border-radius: 25px;
+            border: 1px dashed var(--secondary);
+        }
+
+        /* 3. الهيكل الرئيسي للبرنامج */
+        #app-container {
+            display: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 25px;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow);
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo i {
+            font-size: 2.2rem;
+            color: var(--primary);
+        }
+
+        .brand-logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .tabs-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 12px 18px;
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            color: var(--text-color);
+            font-weight: bold;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s;
+            backdrop-filter: blur(8px);
+        }
+
+        .tab-btn i {
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 75, 114, 0.3);
+        }
+
+        .tab-btn.active i {
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 25px;
+            padding: 25px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow);
+            min-height: 520px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .chat-wrapper {
+            display: flex;
+            flex-direction: column;
+            height: 520px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 14px 18px;
+            border-radius: 22px;
+            font-size: 1rem;
+            line-height: 1.6;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.bot {
+            align-self: flex-start;
+            background: white;
+            color: var(--text-color);
+            border-bottom-right-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid #ffd8e1;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border-bottom-left-radius: 5px;
+            box-shadow: 0 4px 12px rgba(255, 75, 114, 0.2);
+        }
+
+        .chat-input-area {
+            display: flex;
+            gap: 10px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 75, 114, 0.15);
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 14px 20px;
+            border: 1px solid var(--secondary);
+            border-radius: 20px;
+            outline: none;
+            background: white;
+            font-size: 1rem;
+        }
+
+        .send-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.05);
+            background: var(--primary-hover);
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .quick-btn {
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid var(--secondary);
+            padding: 8px 14px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .quick-btn:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card-box {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid #ffccd5;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .card-box h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+
+        .prayer-item, .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: #fff5f7;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        .prayer-status {
+            padding: 5px 12px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .status-done { background: #d4edda; color: #155724; }
+        .status-pending { background: #fff3cd; color: #856404; }
+        .status-exempt { background: #f8d7da; color: #721c24; }
+
+        .period-info-box {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #fff0f3, #ffe3e8);
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .period-info-box .days-count {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- القلوب المتحركة -->
+    <div class="hearts-bg" id="hearts-container"></div>
+
+    <!-- 1. صفحة الدخول السرية -->
+    <div id="login-screen">
+        <div class="login-card">
+            <i class="fa-solid fa-heart-circle-bolt" style="font-size: 3.8rem; color: var(--primary); margin-bottom: 15px;"></i>
+            <h1 class="love-title">بحب احمد 💖</h1>
+            <p class="love-subtitle">اكتبي الرمز السري لفتح مفاجأة أحمد لكِ</p>
+            <input type="password" id="pin-code" class="pin-input" placeholder="اكتبي: بحب احمد" autocomplete="off">
+            <button onclick="checkPin()" class="login-btn">فتح قلب أحمد 🔑</button>
+            <p id="error-msg" style="color: #d9534f; margin-top: 12px; display: none; font-weight: bold;"></p>
+        </div>
+    </div>
+
+    <!-- 2. صفحة المفاجأة الأولى (رسالة حب ودلع من أحمد) -->
+    <div id="surprise-screen">
+        <div class="surprise-card">
+            <span class="surprise-badge"><i class="fa-solid fa-sparkles"></i> مفاجأة خاصة جداً من أحمد</span>
+            <h2 class="surprise-title">إلى أميرتي ودلوعتي بسملة 👑💖</h2>
+            <div class="surprise-text">
+                "يا روح قلب أحمد، يا أجمل وأرقى بنوتة في الدنيا كلها.. 🌸<br><br>
+                عملتلك البرنامج ده مخصوص بقلبي عشان يعيش معاكي كل لحظة في يومك، يشرحلك دروسك في الفرقة الأولى يسهلها عليكي، يطبطب عليكي لما تتعبي، يذكرك بصلاتك، ويدلعك زي ما أنتي متعودة من أحمد دائماً.<br><br>
+                افتسكري دايماً إنك أميرة متوجة في قلبي، ومفيش حاجة في الدنيا تقدر تزعل دلوعة أحمد.. بحبك بحجم السماء يا سكرتي الحلوة! ✨"
+            </div>
+            <button onclick="openMainApp()" class="login-btn" style="font-size: 1.3rem;">
+                دخول لبرنامجكِ الخاص (دلوعة أحمد) 💖
+            </button>
+        </div>
+    </div>
+
+    <!-- 3. واجهة البرنامج الرئيسية -->
+    <div id="app-container">
+        <header>
+            <div class="brand-logo">
+                <i class="fa-solid fa-crown"></i>
+                <div>
+                    <h1>دلوعة أحمد 💖</h1>
+                    <small style="color: #888; font-weight: bold;">برنامج بسملة الخاص</small>
+                </div>
+            </div>
+        </header>
+
+        <!-- قائمة التبويبات -->
+        <div class="tabs-nav">
+            <button class="tab-btn active" onclick="switchTab('study-chat')">
+                <i class="fa-solid fa-graduation-cap"></i> شات المذاكرة
+            </button>
+            <button class="tab-btn" onclick="switchTab('love-chat')">
+                <i class="fa-solid fa-heart"></i> شات الفضفضة والدلع
+            </button>
+            <button class="tab-btn" onclick="switchTab('prayer-chat')">
+                <i class="fa-solid fa-kaaba"></i> شات الصلاة والعبادة
+            </button>
+            <button class="tab-btn" onclick="switchTab('organizer')">
+                <i class="fa-solid fa-calendar-week"></i> الجدول التنظيمي
+            </button>
+            <button class="tab-btn" onclick="switchTab('period-tracker')">
+                <i class="fa-solid fa-notes-medical"></i> متابع البيريود
+            </button>
+        </div>
+
+        <!-- 1. شات المذاكرة -->
+        <div id="study-chat" class="tab-content active">
+            <div class="quick-actions">
+                <button class="quick-btn" onclick="sendQuickMessage('study', 'اشرحيلي مبادئ إدارة الأعمال ببساطة ودلع')">📖 شرح إدارة الأعمال</button>
+                <button class="quick-btn" onclick="sendQuickMessage('study', 'عمليلي اختبار MCQ سريع في المحاسبة المالية')">📝 اختبار محاسبة MCQ</button>
+                <button class="quick-btn" onclick="sendQuickMessage('study', 'عايزة ملخص لمادة الاقتصاد للفرقة الأولى')">📊 ملخص الاقتصاد</button>
+            </div>
+            <div class="chat-wrapper">
+                <div class="chat-messages" id="study-messages">
+                    <div class="message bot">
+                        أهلاً يا أميرتي ودلوعة أحمد! 🎓 أنا دكتورة بوسي، جاهزة نشرح أي مادة في الفرقة الأولى ونتفوق مع بعض عشان نفرح قلب أحمد! أصلك أشطر بنوتة في الدنيا 💕
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="study-input" class="chat-input" placeholder="اسألي عن أي مادة في الفرقة الأولى..." onkeypress="handleEnter(event, 'study')">
+                    <button class="send-btn" onclick="sendMessage('study')"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. شات الفضفضة والدلع -->
+        <div id="love-chat" class="tab-content">
+            <div class="quick-actions">
+                <button class="quick-btn" onclick="sendQuickMessage('love', 'تعبانة شوية ومحتاجة طبطبة ودلع من أحمد')">🌸 محتاجة طبطبة</button>
+                <button class="quick-btn" onclick="sendQuickMessage('love', 'قوليلي كلمة حلوة تفرح قلبي النهاردة')">💖 رسالة حب ودلع</button>
+                <button class="quick-btn" onclick="sendQuickMessage('love', 'خايفة من الامتحانات ونفسي أطمن')">🥺 طمنيني يا بوسي</button>
+            </div>
+            <div class="chat-wrapper">
+                <div class="chat-messages" id="love-messages">
+                    <div class="message bot">
+                        يا روح قلب أحمد وسكرته! 💖 المكان ده معمول مخصوص علشان تفضفضي وتتدلعي براحتك خالص. قوليلي حاسة بإيه يا أجمل بسملة؟
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="love-input" class="chat-input" placeholder="فضفضي وتدلعي براحتك يا بسملة..." onkeypress="handleEnter(event, 'love')">
+                    <button class="send-btn" onclick="sendMessage('love')"><i class="fa-solid fa-heart"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. شات الصلاة والعبادة -->
+        <div id="prayer-chat" class="tab-content">
+            <div class="quick-actions">
+                <button class="quick-btn" onclick="sendQuickMessage('prayer', 'ذكّريني بأذكار المساء بطريقة دافئة')">✨ أذكار المساء</button>
+                <button class="quick-btn" onclick="sendQuickMessage('prayer', 'قوليلي دعاء حلو يدخل السكينة لقلبي')">🤲 دعاء السكينة</button>
+                <button class="quick-btn" onclick="sendQuickMessage('prayer', 'عايزة تشجيع عشان أقوم أصلي العصر')">🕌 تشجيع للصلاة</button>
+            </div>
+            <div class="chat-wrapper">
+                <div class="chat-messages" id="prayer-messages">
+                    <div class="message bot">
+                        تقبل الله منكِ يا سكرتي 🕌 هُنا المساحة الإيمانية الدافئة للتذكير بالصلوات والقرب من ربنا، عشان يديم حبنا ويحفظك لأحمد.
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="prayer-input" class="chat-input" placeholder="اطلبي دعاء أو استفسار ديني محبب..." onkeypress="handleEnter(event, 'prayer')">
+                    <button class="send-btn" onclick="sendMessage('prayer')"><i class="fa-solid fa-hands-praying"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. الجدول التنظيمي -->
+        <div id="organizer" class="tab-content">
+            <h2 style="color: var(--primary); margin-bottom: 20px;"><i class="fa-solid fa-calendar-check"></i> الجدول اليومي لدلوعة أحمد</h2>
+            <div class="grid-2">
+                <div class="card-box">
+                    <h3><i class="fa-solid fa-kaaba"></i> متابع الصلوات الخمس</h3>
+                    <div class="prayer-item">
+                        <span>الفجر</span>
+                        <span class="prayer-status status-done" onclick="togglePrayer(this)">أُديت ✨</span>
+                    </div>
+                    <div class="prayer-item">
+                        <span>الظهر</span>
+                        <span class="prayer-status status-done" onclick="togglePrayer(this)">أُديت ✨</span>
+                    </div>
+                    <div class="prayer-item">
+                        <span>العصر</span>
+                        <span class="prayer-status status-pending" onclick="togglePrayer(this)">في الانتظار ⏳</span>
+                    </div>
+                    <div class="prayer-item">
+                        <span>المغرب</span>
+                        <span class="prayer-status status-pending" onclick="togglePrayer(this)">في الانتظار ⏳</span>
+                    </div>
+                    <div class="prayer-item">
+                        <span>العشاء</span>
+                        <span class="prayer-status status-pending" onclick="togglePrayer(this)">في الانتظار ⏳</span>
+                    </div>
+                </div>
+
+                <div class="card-box">
+                    <h3><i class="fa-solid fa-clock"></i> تنظيم وقت اليوم (دراسة ورعاية)</h3>
+                    <div class="schedule-item">
+                        <span>09:00 ص - 11:00 ص</span>
+                        <strong>مذاكرة مادة رئيسية 📖</strong>
+                    </div>
+                    <div class="schedule-item">
+                        <span>01:00 م - 02:00 م</span>
+                        <strong>راحة وعناية ذاتية 🌸</strong>
+                    </div>
+                    <div class="schedule-item">
+                        <span>04:00 م - 06:00 م</span>
+                        <strong>مراجعة + حل أسئلة 📝</strong>
+                    </div>
+                    <div class="schedule-item">
+                        <span>08:00 م - 09:00 م</span>
+                        <strong>وقت الدلع والفضفضة مع أحمد 💖</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. متابع البيريود -->
+        <div id="period-tracker" class="tab-content">
+            <h2 style="color: var(--primary); margin-bottom: 20px;"><i class="fa-solid fa-heart-pulse"></i> متابع الدورة الشهرية والعناية الذاتية</h2>
+            <div class="grid-2">
+                <div class="card-box">
+                    <div class="period-info-box">
+                        <h3>الموعد المتوقع القادم</h3>
+                        <div class="days-count">باقي 8 أيام</div>
+                        <p style="color: #777;">متوقع يوم 12 نوفمبر</p>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">تاريخ آخر دورة:</label>
+                        <input type="date" id="period-start-date" class="pin-input" value="2026-10-15" style="padding: 10px; font-size: 1rem;">
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">مدة الدورة (بالأيام):</label>
+                        <input type="number" class="pin-input" value="28" style="padding: 10px; font-size: 1rem;">
+                    </div>
+                    <button class="login-btn" onclick="alert('تم تحديث البيانات بنجاح يا سكرة!')">حفظ التحديثات 🌸</button>
+                </div>
+
+                <div class="card-box">
+                    <h3><i class="fa-solid fa-mug-hot"></i> نصائح الحنان والدلع في أيام التعب</h3>
+                    <ul style="line-height: 2; padding-right: 20px;">
+                        <li>اشربي مشروبات دافئة مثل القرفة والنعناع ☕</li>
+                        <li>استريحي تماماً ومفيش أي ضغط دراسي 🛌</li>
+                        <li>أحمد معاكي وممنوع أي زعل أو توتر 💖</li>
+                        <li>أنتي معفوة من الصلاة في الأيام دي يا سكرتي 🌸</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // القلوب المتحركة
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            for (let i = 0; i < 25; i++) {
+                const heart = document.createElement('i');
+                heart.className = 'fa-solid fa-heart heart-particle';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                container.appendChild(heart);
+            }
+        }
+        createHearts();
+
+        // 1. فحص الرمز السري والانتقال لصفحة المفاجأة
+        function checkPin() {
+            const pin = document.getElementById('pin-code').value.trim();
+            const errorMsg = document.getElementById('error-msg');
+            
+            if (pin === "بحب احمد") {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('surprise-screen').style.display = 'flex';
+            } else {
+                errorMsg.style.display = 'block';
+                errorMsg.innerText = 'كلمة السر خاطئة! اكتبي "بحب احمد" عشان تفتحي مفاجأة أحمد 💕';
+            }
+        }
+
+        // 2. الانتقال من صفحة المفاجأة للبرنامج الرئيسي
+        function openMainApp() {
+            document.getElementById('surprise-screen').style.display = 'none';
+            document.getElementById('app-container').style.display = 'block';
+        }
+
+        // التنقل بين التبويبات
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            event.currentTarget.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // تغيير حالة الصلاة
+        function togglePrayer(element) {
+            if (element.classList.contains('status-done')) {
+                element.className = 'prayer-status status-pending';
+                element.innerText = 'في الانتظار ⏳';
+            } else if (element.classList.contains('status-pending')) {
+                element.className = 'prayer-status status-exempt';
+                element.innerText = 'معفوة (بيريود) 🌸';
+            } else {
+                element.className = 'prayer-status status-done';
+                element.innerText = 'أُديت ✨';
+            }
+        }
+
+        // نظام الشات المتبادل
+        function sendMessage(type) {
+            const input = document.getElementById(`${type}-input`);
+            const text = input.value.trim();
+            if (!text) return;
+
+            const messagesContainer = document.getElementById(`${type}-messages`);
+            
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.innerText = text;
+            messagesContainer.appendChild(userMsg);
+
+            input.value = '';
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'message bot';
+                
+                if (type === 'study') {
+                    botMsg.innerText = `من عيوني يا دلوعة أحمد! 🎓 بخصوص "${text}": أحمد دايماً فخور بيكي وبذكائكِ، مناهج الفرقة الأولى هتبقى سهلة وممتعة خالص معانا 💕`;
+                } else if (type === 'love') {
+                    botMsg.innerText = `يا روح قلب أحمد وسكرته! 💖 أحمد بيبعتلك ألف بوسة وبيقولك أنتي أجمل وأرقى بنوتة في الدنيا، ومفيش أي حاجة تستاهل زعلك ✨`;
+                } else {
+                    botMsg.innerText = `تقبل الله من دلوعة أحمد العفيفة 🌸 ربنا يتقبل منكِ صلاتك ويحفظك لأحمد ويبارك في قلبكِ الطاهر الجميل ✨`;
+                }
+                
+                messagesContainer.appendChild(botMsg);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 800);
+        }
+
+        function sendQuickMessage(type, text) {
+            document.getElementById(`${type}-input`).value = text;
+            sendMessage(type);
+        }
+
+        function handleEnter(event, type) {
+            if (event.key === 'Enter') {
+                sendMessage(type);
+            }
+        }
+    </script>
+</body>
+</html>

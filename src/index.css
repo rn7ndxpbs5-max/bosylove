@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #ff3366;
+  --primary-hover: #e02452;
+  --secondary: #ff7597;
+  --accent: #ffe0e9;
+  --bg-gradient: linear-gradient(135deg, #fff0f3 0%, #ffe3ea 50%, #ffccd8 100%);
+  --glass-bg: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(255, 255, 255, 0.9);
+  --text-color: #4a2c35;
+  --shadow: 0 10px 40px 0 rgba(255, 51, 102, 0.15);
+}
+
+body {
+  background: var(--bg-gradient);
+  min-height: 100vh;
+  color: var(--text-color);
+  font-family: 'Cairo', 'Tajawal', system-ui, -apple-system, sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.font-marhey {
+  font-family: 'Marhey', cursive, 'Cairo', sans-serif;
+}
+
+/* Floating hearts in background */
+.hearts-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.heart-particle {
+  position: absolute;
+  color: rgba(255, 51, 102, 0.25);
+  animation: floatUp 9s infinite linear;
+  bottom: -50px;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 1; }
+  100% { transform: translateY(-110vh) rotate(360deg) scale(1.2); opacity: 0; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 10px 40px 0 rgba(255, 51, 102, 0.15); }
+  50% { box-shadow: 0 14px 45px 0 rgba(255, 51, 102, 0.35); }
+}
+
+.login-card-glow {
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+/* Custom delicate scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 230, 235, 0.6);
+}
+::-webkit-scrollbar-thumb {
+  background: #ff4b7266;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff4b72aa;
+}

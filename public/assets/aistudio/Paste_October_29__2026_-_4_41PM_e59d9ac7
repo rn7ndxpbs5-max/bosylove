@@ -1,0 +1,708 @@
+إليك كود البرنامج الكامل والمنظم بعد حذف زر النافذة المنبثقة الخاصة بـ "System Instructions" تماماً من أعلى الشريط ومن الواجهة:
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دلوعة أحمد 💖</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #ff4b72;
+            --primary-hover: #ff2a55;
+            --secondary: #ff85a2;
+            --accent: #ffd1dc;
+            --bg-gradient: linear-gradient(135deg, #ffe6eb 0%, #ffd3dd 50%, #ffb3c6 100%);
+            --glass-bg: rgba(255, 255, 255, 0.88);
+            --glass-border: rgba(255, 255, 255, 0.7);
+            --text-color: #4a2c35;
+            --shadow: 0 8px 32px 0 rgba(255, 75, 114, 0.18);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            color: var(--text-color);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* القلوب المتحركة في الخلفية */
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .heart-particle {
+            position: absolute;
+            color: rgba(255, 75, 114, 0.35);
+            animation: floatUp 8s infinite linear;
+            bottom: -50px;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 1; }
+            100% { transform: translateY(-110vh) rotate(360deg) scale(1.2); opacity: 0; }
+        }
+
+        /* صفحة الدخول السرية الإجبارية */
+        #login-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-gradient);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 2px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 440px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 8px 32px 0 rgba(255, 75, 114, 0.2); }
+            50% { box-shadow: 0 12px 40px 0 rgba(255, 75, 114, 0.4); }
+        }
+
+        .love-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+        }
+
+        .love-subtitle {
+            font-size: 1.1rem;
+            color: #7a4253;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .pin-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid var(--secondary);
+            border-radius: 20px;
+            font-size: 1.2rem;
+            text-align: center;
+            outline: none;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .pin-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(255, 75, 114, 0.3);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 20px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(255, 75, 114, 0.3);
+            transition: all 0.3s;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 75, 114, 0.4);
+        }
+
+        /* الهيكل الرئيسي للبرنامج */
+        #app-container {
+            display: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 25px;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow);
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo i {
+            font-size: 2.2rem;
+            color: var(--primary);
+        }
+
+        .brand-logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        /* قائمة التبويبات العلیا */
+        .tabs-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 12px 18px;
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            color: var(--text-color);
+            font-weight: bold;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s;
+            backdrop-filter: blur(8px);
+        }
+
+        .tab-btn i {
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 75, 114, 0.3);
+        }
+
+        .tab-btn.active i {
+            color: white;
+        }
+
+        /* محتوى التبويبات */
+        .tab-content {
+            display: none;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 25px;
+            padding: 25px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow);
+            min-height: 520px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* الشات والتنسيقات */
+        .chat-wrapper {
+            display: flex;
+            flex-direction: column;
+            height: 520px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 14px 18px;
+            border-radius: 22px;
+            font-size: 1rem;
+            line-height: 1.6;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.bot {
+            align-self: flex-start;
+            background: white;
+            color: var(--text-color);
+            border-bottom-right-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid #ffd8e1;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border-bottom-left-radius: 5px;
+            box-shadow: 0 4px 12px rgba(255, 75, 114, 0.2);
+        }
+
+        .chat-input-area {
+            display: flex;
+            gap: 10px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 75, 114, 0.15);
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 14px 20px;
+            border: 1px solid var(--secondary);
+            border-radius: 20px;
+            outline: none;
+            background: white;
+            font-size: 1rem;
+        }
+
+        .send-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.05);
+            background: var(--primary-hover);
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .quick-btn {
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid var(--secondary);
+            padding: 8px 14px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .quick-btn:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        /* الجداول والبطاقات التنظيمية */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card-box {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid #ffccd5;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .card-box h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+
+        .prayer-item, .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: #fff5f7;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        .prayer-status {
+            padding: 5px 12px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .status-done { background: #d4edda; color: #155724; }
+        .status-pending { background: #fff3cd; color: #856404; }
+        .status-exempt { background: #f8d7da; color: #721c24; }
+
+        .period-info-box {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #fff0f3, #ffe3e8);
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .period-info-box .days-count {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- القلوب المتحركة -->
+    <div class="hearts-bg" id="hearts-container"></div>
+
+    <!-- صفحة الدخول السرية الإجبارية -->
+    <div id="login-screen">
+        <div class="login-card">
+            <i class="fa-solid fa-heart-circle-bolt" style="font-size: 3.5rem; color: var(--primary); margin-bottom: 15px;"></i>
+            <h1 class="love-title">بحب احمد 💖</h1>
+            <p class="love-subtitle">اكتبي الرمز السري للدخول إلى "دلوعة أحمد"</p>
+            <input type="password" id="pin-code" class="pin-input" placeholder="اكتبي: بحب احمد" autocomplete="off">
+            <button onclick="checkPin()" class="login-btn">فتح قلب أحمد 🔑</button>
+            <p id="error-msg" style="color: #d9534f; margin-top: 12px; display: none; font-weight: bold;"></p>
+        </div>
+    </div>
+
+    <!-- واجهة البرنامج الرئيسية -->
+    <div id="app-container">
+        <header>
+            <div class="brand-logo">
+                <i class="fa-solid fa-crown"></i>
+                <div>
+                    <h1>دلوعة أحمد 💖</h1>
+                    <small style="color: #888; font-weight: bold;">برنامج بسملة الخاص</small>
+                </div>
+            </div>
+        </header>
+
+        <!-- قائمة التبويبات -->
+        <div class="tabs-nav">
+            <button class="tab-btn active" onclick="switchTab('study-chat')">
+                <i class="fa-solid fa-graduation-cap"></i> شات المذاكرة
+            </button>
+            <button class="tab-btn" onclick="switchTab('love-chat')">
+                <i class="fa-solid fa-heart"></i> شات الفضفضة والدلع
+            </button>
+            <button class="tab-btn" onclick="switchTab('prayer-chat')">
+                <i class="fa-solid fa-kaaba"></i> شات الصلاة والعبادة
+            </button>
+            <button class="tab-btn" onclick="switchTab('organizer')">
+                <i class="fa-solid fa-calendar-week"></i> الجدول التنظيمي
+            </button>
+            <button class="tab-btn" onclick="switchTab('period-tracker')">
+                <i class="fa-solid fa-notes-medical"></i> متابع البيريود
+            </button>
+        </div>
+
+        <!-- 1. شات المذاكرة -->
+        <div id="study-chat" class="tab-content active">
+            <div class="quick-actions">
+                <button class="quick-btn" onclick="sendQuickMessage('study', 'اشرحيلي مبادئ إدارة الأعمال ببساطة ودلع')">📖 شرح إدارة الأعمال</button>
+                <button class="quick-btn" onclick="sendQuickMessage('study', 'عمليلي اختبار MCQ سريع في المحاسبة المالية')">📝 اختبار محاسبة MCQ</button>
+                <button class="quick-btn" onclick="sendQuickMessage('study', 'عايزة ملخص لمادة الاقتصاد للفرقة الأولى')">📊 ملخص الاقتصاد</button>
+            </div>
+            <div class="chat-wrapper">
+                <div class="chat-messages" id="study-messages">
+                    <div class="message bot">
+                        أهلاً يا أميرتي ودلوعة أحمد! 🎓 أنا دكتورة بوسي، جاهزة نشرح أي مادة في الفرقة الأولى ونتفوق مع بعض عشان نفرح قلب أحمد! أصلك أشطر بنوتة في الدنيا 💕
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="study-input" class="chat-input" placeholder="اسألي عن أي مادة في الفرقة الأولى..." onkeypress="handleEnter(event, 'study')">
+                    <button class="send-btn" onclick="sendMessage('study')"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. شات الفضفضة والدلع -->
+        <div id="love-chat" class="tab-content">
+            <div class="quick-actions">
+                <button class="quick-btn" onclick="sendQuickMessage('love', 'تعبانة شوية ومحتاجة طبطبة ودلع من أحمد')">🌸 محتاجة طبطبة</button>
+                <button class="quick-btn" onclick="sendQuickMessage('love', 'قوليلي كلمة حلوة تفرح قلبي النهاردة')">💖 رسالة حب ودلع</button>
+                <button class="quick-btn" onclick="sendQuickMessage('love', 'خايفة من الامتحانات ونفسي أطمن')">🥺 طمنيني يا بوسي</button>
+            </div>
+            <div class="chat-wrapper">
+                <div class="chat-messages" id="love-messages">
+                    <div class="message bot">
+                        يا روح قلب أحمد وسكرته! 💖 المكان ده معمول مخصوص علشان تفضفضي وتتدلعي براحتك خالص. قوليلي حاسة بإيه يا أجمل بسملة؟
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="love-input" class="chat-input" placeholder="فضفضي وتدلعي براحتك يا بسملة..." onkeypress="handleEnter(event, 'love')">
+                    <button class="send-btn" onclick="sendMessage('love')"><i class="fa-solid fa-heart"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. شات الصلاة والعبادة -->
+        <div id="prayer-chat" class="tab-content">
+            <div class="quick-actions">
+                <button class="quick-btn" onclick="sendQuickMessage('prayer', 'ذكّريني بأذكار المساء بطريقة دافئة')">✨ أذكار المساء</button>
+                <button class="quick-btn" onclick="sendQuickMessage('prayer', 'قوليلي دعاء حلو يدخل السكينة لقلبي')">🤲 دعاء السكينة</button>
+                <button class="quick-btn" onclick="sendQuickMessage('prayer', 'عايزة تشجيع عشان أقوم أصلي العصر')">🕌 تشجيع للصلاة</button>
+            </div>
+            <div class="chat-wrapper">
+                <div class="chat-messages" id="prayer-messages">
+                    <div class="message bot">
+                        تقبل الله منكِ يا سكرتي 🕌 هُنا المساحة الإيمانية الدافئة للتذكير بالصلوات والقرب من ربنا، عشان يديم حبنا ويحفظك لأحمد.
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="prayer-input" class="chat-input" placeholder="اطلبي دعاء أو استفسار ديني محبب..." onkeypress="handleEnter(event, 'prayer')">
+                    <button class="send-btn" onclick="sendMessage('prayer')"><i class="fa-solid fa-hands-praying"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. الجدول التنظيمي -->
+        <div id="organizer" class="tab-content">
+            <h2 style="color: var(--primary); margin-bottom: 20px;"><i class="fa-solid fa-calendar-check"></i> الجدول اليومي لدلوعة أحمد</h2>
+            <div class="grid-2">
+                <div class="card-box">
+                    <h3><i class="fa-solid fa-kaaba"></i> متابع الصلوات الخمس</h3>
+                    <div class="prayer-item">
+                        <span>الفجر</span>
+                        <span class="prayer-status status-done" onclick="togglePrayer(this)">أُديت ✨</span>
+                    </div>
+                    <div class="prayer-item">
+                        <span>الظهر</span>
+                        <span class="prayer-status status-done" onclick="togglePrayer(this)">أُديت ✨</span>
+                    </div>
+                    <div class="prayer-item">
+                        <span>العصر</span>
+                        <span class="prayer-status status-pending" onclick="togglePrayer(this)">في الانتظار ⏳</span>
+                    </div>
+                    <div class="prayer-item">
+                        <span>المغرب</span>
+                        <span class="prayer-status status-pending" onclick="togglePrayer(this)">في الانتظار ⏳</span>
+                    </div>
+                    <div class="prayer-item">
+                        <span>العشاء</span>
+                        <span class="prayer-status status-pending" onclick="togglePrayer(this)">في الانتظار ⏳</span>
+                    </div>
+                </div>
+
+                <div class="card-box">
+                    <h3><i class="fa-solid fa-clock"></i> تنظيم وقت اليوم (دراسة ورعاية)</h3>
+                    <div class="schedule-item">
+                        <span>09:00 ص - 11:00 ص</span>
+                        <strong>مذاكرة مادة رئيسية 📖</strong>
+                    </div>
+                    <div class="schedule-item">
+                        <span>01:00 م - 02:00 م</span>
+                        <strong>راحة وعناية ذاتية 🌸</strong>
+                    </div>
+                    <div class="schedule-item">
+                        <span>04:00 م - 06:00 م</span>
+                        <strong>مراجعة + حل أسئلة 📝</strong>
+                    </div>
+                    <div class="schedule-item">
+                        <span>08:00 م - 09:00 م</span>
+                        <strong>وقت الدلع والفضفضة مع أحمد 💖</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. متابع البيريود -->
+        <div id="period-tracker" class="tab-content">
+            <h2 style="color: var(--primary); margin-bottom: 20px;"><i class="fa-solid fa-heart-pulse"></i> متابع الدورة الشهرية والعناية الذاتية</h2>
+            <div class="grid-2">
+                <div class="card-box">
+                    <div class="period-info-box">
+                        <h3>الموعد المتوقع القادم</h3>
+                        <div class="days-count">باقي 8 أيام</div>
+                        <p style="color: #777;">متوقع يوم 12 نوفمبر</p>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">تاريخ آخر دورة:</label>
+                        <input type="date" id="period-start-date" class="pin-input" value="2026-10-15" style="padding: 10px; font-size: 1rem;">
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; font-weight: bold;">مدة الدورة (بالأيام):</label>
+                        <input type="number" class="pin-input" value="28" style="padding: 10px; font-size: 1rem;">
+                    </div>
+                    <button class="login-btn" onclick="alert('تم تحديث البيانات بنجاح يا سكرة!')">حفظ التحديثات 🌸</button>
+                </div>
+
+                <div class="card-box">
+                    <h3><i class="fa-solid fa-mug-hot"></i> نصائح الحنان والدلع في أيام التعب</h3>
+                    <ul style="line-height: 2; padding-right: 20px;">
+                        <li>اشربي مشروبات دافئة مثل القرفة والنعناع ☕</li>
+                        <li>استريحي تماماً ومفيش أي ضغط دراسي 🛌</li>
+                        <li>أحمد معاكي وممنوع أي زعل أو توتر 💖</li>
+                        <li>أنتي معفوة من الصلاة في الأيام دي يا سكرتي 🌸</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // القلوب المتحركة
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            for (let i = 0; i < 25; i++) {
+                const heart = document.createElement('i');
+                heart.className = 'fa-solid fa-heart heart-particle';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                container.appendChild(heart);
+            }
+        }
+        createHearts();
+
+        // فحص الرمز السري الإجباري
+        function checkPin() {
+            const pin = document.getElementById('pin-code').value.trim();
+            const errorMsg = document.getElementById('error-msg');
+            
+            if (pin === "بحب احمد") {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('app-container').style.display = 'block';
+            } else {
+                errorMsg.style.display = 'block';
+                errorMsg.innerText = 'كلمة السر خاطئة! اكتبي "بحب احمد" عشان تفتحي قلب البرنامج 💕';
+            }
+        }
+
+        // التنقل بين التبويبات
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            event.currentTarget.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // تغيير حالة الصلاة
+        function togglePrayer(element) {
+            if (element.classList.contains('status-done')) {
+                element.className = 'prayer-status status-pending';
+                element.innerText = 'في الانتظار ⏳';
+            } else if (element.classList.contains('status-pending')) {
+                element.className = 'prayer-status status-exempt';
+                element.innerText = 'معفوة (بيريود) 🌸';
+            } else {
+                element.className = 'prayer-status status-done';
+                element.innerText = 'أُديت ✨';
+            }
+        }
+
+        // نظام الشات المتبادل
+        function sendMessage(type) {
+            const input = document.getElementById(`${type}-input`);
+            const text = input.value.trim();
+            if (!text) return;
+
+            const messagesContainer = document.getElementById(`${type}-messages`);
+            
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.innerText = text;
+            messagesContainer.appendChild(userMsg);
+
+            input.value = '';
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'message bot';
+                
+                if (type === 'study') {
+                    botMsg.innerText = `من عيوني يا دلوعة أحمد! 🎓 بخصوص "${text}": أحمد دايماً فخور بيكي وبذكائكِ، مناهج الفرقة الأولى هتبقى سهلة وممتعة خالص معانا 💕`;
+                } else if (type === 'love') {
+                    botMsg.innerText = `يا روح قلب أحمد وسكرته! 💖 أحمد بيبعتلك ألف بوسة وبيقولك أنتي أجمل وأرقى بنوتة في الدنيا، ومفيش أي حاجة تستاهل زعلك ✨`;
+                } else {
+                    botMsg.innerText = `تقبل الله من دلوعة أحمد العفيفة 🌸 ربنا يتقبل منكِ صلاتك ويحفظك لأحمد ويبارك في قلبكِ الطاهر الجميل ✨`;
+                }
+                
+                messagesContainer.appendChild(botMsg);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 800);
+        }
+
+        function sendQuickMessage(type, text) {
+            document.getElementById(`${type}-input`).value = text;
+            sendMessage(type);
+        }
+
+        function handleEnter(event, type) {
+            if (event.key === 'Enter') {
+                sendMessage(type);
+            }
+        }
+    </script>
+</body>
+</html>
